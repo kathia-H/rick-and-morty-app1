@@ -1,7 +1,7 @@
 <h2>Character Details</h2>
 <label for="idInput">Entrez un ID :</label>
 <input type="number" [(ngModel)]="id" id="idInput">
-<button (click)="fetchCharacter()">Rechercher</button>
+<button (click)="search()">Rechercher</button>
 
 <div *ngIf="loading">Chargement...</div>
 <div *ngIf="errorMessage" style="color:red">{{ errorMessage }}</div>

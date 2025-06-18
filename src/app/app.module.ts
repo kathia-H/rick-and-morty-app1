@@ -14,13 +14,12 @@ import { CharacterDetailsComponent } from './components/character-details/charac
   declarations: [
     AppComponent,
     CharactersListComponent,
-    CharacterDetailsComponent,
-  
+    CharacterDetailsComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule,
+    FormsModule, // <-- Important pour ngModel
     RouterModule.forRoot(routes)
   ],
   providers: [],

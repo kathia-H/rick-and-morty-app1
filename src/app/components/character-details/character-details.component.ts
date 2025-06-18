@@ -1,37 +1,41 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
 
 @Component({
   selector: 'app-character-details',
-  templateUrl: './character-details.component.html'
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './character-details.component.html',
 })
 export class CharacterDetailsComponent {
-  id: number = 0;
-  character: any = null;
-  errorMessage: string = '';
+  id!: number;
+  character: any;
+  errorMessage = '';
   loading = false;
 
-  constructor(private api: RickAndMortyService) {}
+  constructor(private rickAndMortyService: RickAndMortyService) {}
 
-  fetchCharacter() {
-    this.errorMessage = '';
-    this.character = null;
-
-    if (this.id <= 0 || !Number.isInteger(this.id)) {
+  search() {
+    if (!Number.isInteger(this.id) || this.id <= 0) {
       this.errorMessage = 'Veuillez entrer un ID entier positif.';
+      this.character = null;
       return;
     }
 
+    this.errorMessage = '';
     this.loading = true;
-    this.api.getCharacterById(this.id).subscribe({
-      next: data => {
+    this.rickAndMortyService.getCharacterById(this.id).subscribe({
+      next: (data: any) => {
         this.character = data;
         this.loading = false;
       },
-      error: err => {
-        this.errorMessage = 'Personnage introuvable.';
+      error: () => {
+        this.errorMessage = "Personnage non trouvé.";
+        this.character = null;
         this.loading = false;
-      }
+      },
     });
   }
 }
