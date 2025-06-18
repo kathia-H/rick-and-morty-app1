@@ -9,14 +9,13 @@ import { routes } from './app.routes';
 
 import { CharactersListComponent } from './components/characters-list/characters-list.component';
 import { CharacterDetailsComponent } from './components/character-details/character-details.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CharactersListComponent,
     CharacterDetailsComponent,
-    NavbarComponent
+  
   ],
   imports: [
     BrowserModule,

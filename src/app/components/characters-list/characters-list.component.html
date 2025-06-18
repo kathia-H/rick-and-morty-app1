@@ -1,1 +1,11 @@
-<p>characters-list works!</p>
+<h2>Characters List</h2>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+  </tr>
+  <tr *ngFor="let character of characters">
+    <td>{{ character.id }}</td>
+    <td>{{ character.name }}</td>
+  </tr>
+</table>
